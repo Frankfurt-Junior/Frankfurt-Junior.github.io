@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería Interactiva</title>
+    <style>
+        /* Reset de márgenes y paddings para no afectar otros estilos */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Estilo básico para el body y la estructura general */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        /* Contenedor de la galería */
+        .gallery-container {
+            width: 100%;
+            max-width: 900px;
+            /* Límite máximo de ancho para evitar que ocupe toda la pantalla */
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        /* Título de la galería */
+        .gallery-title {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Contenedor del slider de imágenes */
+        .gallery-slider {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        /* Contenedor de las imágenes */
+        .slider-images {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        /* Estilo para las imágenes de la galería */
+        .slide {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        /* Botones de navegación (flechas) */
+        button {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            font-size: 2rem;
+            padding: 10px;
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            border-radius: 50%;
+        }
+
+        /* Flecha izquierda */
+        .prev {
+            left: 10px;
+        }
+
+        /* Flecha derecha */
+        .next {
+            right: 10px;
+        }
+
+        /* Estilo al pasar el cursor sobre las flechas */
+        button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Diseño responsivo para pantallas pequeñas */
+        @media screen and (max-width: 768px) {
+            .gallery-container {
+                width: 100%;
+                padding: 10px;
+            }
+
+            .gallery-title {
+                font-size: 1.8rem;
+            }
+
+            .gallery-slider {
+                width: 100%;
+            }
+
+            button {
+                font-size: 1.5rem;
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section class="gallery-container" id="gallery-1">
+        <h1 class="gallery-title">Duos</h1>
+        <div class="gallery-slider">
+            <button class="prev" onclick="moveSlide(-1, 'gallery-1')">&#10094;</button>
+            <div class="slider-images">
+                <img src="imagenes/output_000.jpg" alt="Duo 1" class="slide">
+                <img src="imagenes/output_001.jpg" alt="Duo 2" class="slide">
+                <img src="imagenes/output_002.jpg" alt="Duo 3" class="slide">
+                <img src="imagenes/output_003.jpg" alt="Duo 4" class="slide">
+                <img src="imagenes/output_004.jpg" alt="Duo 5" class="slide">
+                <img src="imagenes/output_005.jpg" alt="Duo 6" class="slide">
+                <img src="imagenes/output_006.jpg" alt="Duo 7" class="slide">
+                <img src="imagenes/output_007.jpg" alt="Duo 8" class="slide">
+                <img src="imagenes/output_008.jpg" alt="Duo 9" class="slide">
+            </div>
+            <button class="next" onclick="moveSlide(1, 'gallery-1')">&#10095;</button>
+        </div>
+    </section>
+
+    <section class="gallery-container" id="gallery-2">
+        <h1 class="gallery-title">Otro Slider</h1>
+        <div class="gallery-slider">
+            <button class="prev" onclick="moveSlide(-1, 'gallery-2')">&#10094;</button>
+            <div class="slider-images">
+                <img src="imagenes/COMBOS_page-0001.jpg" alt="Combo 1" class="slide">
+                <img src="imagenes/COMBOS_page-0002.jpg" alt="Combo 2" class="slide">
+                <img src="imagenes/COMBOS_page-0003.jpg" alt="Combo 3" class="slide">
+            </div>
+            <button class="next" onclick="moveSlide(1, 'gallery-2')">&#10095;</button>
+        </div>
+    </section>
+
+
+    <script>
+        // Función para mover las imágenes del slider
+        function moveSlide(direction, galleryId) {
+            const gallery = document.getElementById(galleryId);
+            const images = gallery.querySelector('.slider-images');
+            const totalSlides = images.children.length;
+            const currentSlide = parseInt(images.getAttribute('data-current')) || 0; // Obtiene el índice actual
+
+            // Calculamos el nuevo índice
+            let newSlideIndex = currentSlide + direction;
+
+            // Aseguramos que el índice esté dentro del rango válido
+            if (newSlideIndex < 0) newSlideIndex = totalSlides - 1;
+            if (newSlideIndex >= totalSlides) newSlideIndex = 0;
+
+            // Desplazamos las imágenes en el slider
+            images.style.transform = `translateX(-${newSlideIndex * 100}%)`;
+
+            // Actualizamos el índice de la imagen actual
+            images.setAttribute('data-current', newSlideIndex);
+        }
+
+
+    </script>
+</body>
+
+</html>
