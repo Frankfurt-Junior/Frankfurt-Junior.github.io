@@ -50,7 +50,7 @@ const menuCategories = [
         items: [
             { name: "Ensalada César", description: "Picatoste, cebolla crujiente, parmesano, tomate cherry, zanahoria rallada, pollo y salsa césar.", price: "7,95€" },
             { name: "Ensalada queso de cabra", description: "Queso cabra, frutos secos, vinagre módena y cebolla crujiente.", price: "6,95€" },
-            { name: "Ensalada Junior", description: "Cebolla, atún, espárragos, maiz, huevo y zanahoria.", price: "7,95€" }
+            { name: "Ensalada Junior", description: "Cebolla, atún, espárragos, maiz, huevo y zanahoria.", price: "6,50€" }
         ]
     },
     {
